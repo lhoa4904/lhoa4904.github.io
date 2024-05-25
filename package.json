@@ -1,0 +1,32 @@
+{
+  "name": "abcd1234-tracker",
+  "version": "0.0.1",
+  "description": "a template for DECO2017 Assessment 3",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "prestart": "parcel build ./public/index.html",
+    "dev": "parcel serve ./public/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hamsall/abcd1234-tracker.git"
+  },
+  "keywords": [
+    "tracker"
+  ],
+  "author": "hamsall",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hamsall/abcd1234-tracker/issues"
+  },
+  "homepage": "https://github.com/hamsall/abcd1234-tracker#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "sass": "^1.75.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.12.0",
+    "parcel": "^2.12.0"
+  }
+}
