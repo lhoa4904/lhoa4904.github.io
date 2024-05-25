@@ -1,48 +1,219 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>repl.it</title>
-    <link href="./scss/main.scss" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    <form id="taskform">
-      <label for="task">Task:</label>
-      <input type="text" name="task" id="taskInput">
-      
-      <br>
-    <!-- Date input -->
-      <label for="dueDate">Due Date: </label>
-      <input type="date" name="dueDate" id="dueDateInput">
-      <br>
-    <!-- Time input -->
-    <label for="completionTime">Completion Time: </label>
-      <input type="time" name="completionTime" id="completionTimeInput">
-      
-      <br>
-      
-    <label for="estimatedTime">Estimated completion time (in mins):</label>
-    <input type="number" name="estimatedTime" id="estimatedTimeInput">
-    <!-- Priority -->
-    <br>
-    
-    <label for="priority">Task Priority:</label>
-    <select name="prority" id="priorityInput">
-      <option value="">Select one</option>
-      <option value="Low">Low</option>
-      <option value="Medium">Medium</option>
-      <option value="High">High</option>
-    </select>
-    
-    <br>
-      
-      <button type="submit">Submit</button>
-    </form>
-    <ul id="tasklist">
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap">
+  <title>Page Pal</title>
+</head>
+
+<body>
+  <header role="banner">
+    <nav class="main-nav" role="navigation">
+      <div class="user-info">
+        <img
+          src="https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_3x2.jpg?w=1436&h=958"
+          alt="User Image" class="user-image">
+        <span class="welcome-text">Welcome back</span>
+      </div>
+    </nav>
+
+  </header>
+
+  <main class="all-content">
+    <article>
+      <section class="parent">
+        <div class="dailyQuote">
+          <h1>Quote of the day</h1>
+          <p class="quoteText">"I cannot make you understand. I cannot make anyone understand what is happening inside
+            me. I cannot even explain it to myself."</p>
+          <div class="quoteSource">
+            Franz Kafka, The Metamorphosis
+          </div>
+        </div>
+
+        <div class="userGoal">
+          <!-- Current User Goal Tab -->
+          <div class="goalTab">
+            <div class="goalTitle">Read 20 Books in 2024</div>
+            <div class="goalProgress">Progress: 10 out of 20 books</div>
+            <!-- SVG container for the pie chart -->
+          </div>
+        </div>
+
+        <div class="friendActivity">
+          <h1 class="montserrat-heading">Friend Activity</h1>
+          <div class="friend" data-friend-id="6a7ef2ec-4f89-11d3-9a0c-0305e82c3301">
+            <img src="https://i.redd.it/zwfggeplutf61.jpg" alt="Friend 1" class="friend-image">
+            <div class="friend-info">
+              <p class="friend-name">Mimi</p>
+              <p class="current-read">Current Read: The Great Gatsby</p>
+            </div>
+          </div>
+
+          <div class="friend" data-friend-id="8c9ef2ec-4f89-11d3-9a0c-0305e82c3303">
+            <img
+              src="https://preview.redd.it/this-cat-looks-like-a-square-pillow-v0-8qsgsnbxqj2b1.jpg?auto=webp&s=3c472c9001ad10b8b5faab0b613b1a221a002374"
+              alt="Friend 3" class="friend-image">
+            <div class="friend-info">
+              <p class="friend-name">Bob</p>
+              <p class="current-read">Current Read: Pride and Prejudice</p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="currentReadInfo">
+          <div class="title-and-button">
+            <h1>Current Read Info</h1>
+            <button class="add-book-button">Add new book</button>
+          </div>
+          <!-- Book Progress Info Tab -->
+          <div class="bookProgressInfo">
+            <div class="detailsWrapper">
+              <img
+                src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1713542603i/11297.jpg"
+                alt="Book Cover" class="bookCover">
+              <div class="bookDetails">
+                <h2 class="bookTitle">Norwegian Wood</h2>
+                <p class="bookAuthor">by Haruki Murakami</p>
+                <p class="bookDescription">A nostalgic story of love and loss set in 1960s Tokyo, following Toru
+                  Watanabe, a university student, as he navigates his feelings for two very different women: the
+                  introspective Naoko, and the lively and outgoing Midori.</p>
+                <div class="progress">
+                  <div class="progress-done" data-done="70">70%</div>
+                </div>
+              </div>
+              <i class="fa-solid fa-ellipsis meatball-icon"></i> <!-- Added icon -->
+            </div>
+
+          </div>
+
+          <!-- Book Progress Info Tab -->
+          <div class="bookProgressInfo">
+            <div class="detailsWrapper">
+              <img
+                src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1713542603i/11297.jpg"
+                alt="Book Cover" class="bookCover">
+              <div class="bookDetails">
+                <h2 class="bookTitle">Norwegian Wood</h2>
+                <p class="bookAuthor">by Haruki Murakami</p>
+                <p class="bookDescription">A nostalgic story of love and loss set in 1960s Tokyo, following Toru
+                  Watanabe, a university student, as he navigates his feelings for two very different women: the
+                  introspective Naoko, and the lively and outgoing Midori.</p>
+                <div class="progress">
+                  <div class="progress-done" data-done="70">70%</div>
+                </div>
+              </div>
+              <i class="fa-solid fa-ellipsis meatball-icon"></i> <!-- Added icon -->
+            </div>
+
+          </div>
+
+          <!-- Repeat for other books -->
+          <div class="bookProgressInfo">
+            <div class="detailsWrapper">
+              <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/62948299/2509798634.jpg" alt="Book Cover"
+                class="bookCover">
+              <div class="bookDetails">
+                <h2 class="bookTitle">The Metamorphosis</h2>
+                <p class="bookAuthor">by Franz Kafka</p>
+                <p class="bookDescription">The story of Gregor Samsa, a traveling salesman who wakes
+                  up one morning to find himself transformed into a gigantic insect. It explores themes of alienation,
+                  guilt, and the absurdity of existence.</p>
+                <div class="progress">
+                  <div class="progress-done" data-done="70">70%</div>
+                </div>
+              </div>
+              <i class="fa-solid fa-ellipsis meatball-icon"></i> <!-- Added icon -->
+            </div>
+          </div>
+        </div>
+
+        <div class="dataInsight">
+          <h1>Data Insight</h1>
+          <div class="dataInsightTab">
+            <h1>Your favourite Genre</h1>
+            <!-- Insert insight content here -->
+          </div>
+          <div class="dataComparison">
+            <div class="comparisonBookMonth">
+              <h2>You have read...</h2>
+              <p><span class="thisMonthBook">7</span> Books this month: </p>
+
+              <p>Books completed last month: <span class="lastMonthBook">5</span></p>
+
+              <div class="comparisonNumChart">
+                <canvas id="comparisonBarChart" style="width:100%; height:200px"></canvas>
+              </div>
+            </div>
+            <div class="comparisonPageDay">
+              <h2>Comparison of Pages Read (Day)</h2>
+              <p>Pages read yesterday: <span class="pagesReadYesterday">50</span></p>
+              <p>Pages read today: <span class="pagesReadToday">60</span></p>
+              <div class="comparisonNumChart">
+                <canvas id="comparisonPageDayChart" style="width:100%; height:200px"></canvas>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+    </article>
+  </main>
+
+  <footer role="contentinfo">
+    <ul>
+      <li>Contact us</li>
     </ul>
-    <!-- <script src="script.js"></script> -->
-    <!-- Swap the scripts to see the working solution -->
-    <script src="script.js"></script>
-  </body>
+  </footer>
+
+  <!-- ADD NEW BOOK POP UP -->
+  <div id="popupOverlay" class="popup-overlay">
+    <div class="popup-content">
+      <span class="close-button">&times;</span>
+      <h2>Add New Book</h2>
+      <form id="addBookForm">
+        <label for="bookTitle">Book Title:</label>
+        <input type="text" id="bookTitle" name="bookTitle" required>
+        <label for="bookAuthor">Author:</label>
+        <input type="text" id="bookAuthor" name="bookAuthor" required>
+        <label for="bookDescription">Description:</label>
+        <textarea id="bookDescription" name="bookDescription" required></textarea>
+        <label for="bookCover">Cover URL:</label>
+        <input type="url" id="bookCover" name="bookCover" required>
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- Edit Reading Progress Popup -->
+  <div id="editPopupOverlay" class="popup-overlay">
+    <div class="popup-content">
+      <span class="close-button">&times;</span>
+      <h2>Edit Reading Progress</h2>
+      <form id="editReadingProgressForm">
+        <label for="editPagesRead">Pages Read Today:</label>
+        <input type="number" id="editPagesRead" name="editPagesRead">
+        <label for="editBookNotes">Book Notes:</label>
+        <textarea id="editBookNotes" name="editBookNotes"></textarea>
+        <button type="submit" id="saveChangesBtn">Save Changes</button>
+      </form>
+    </div>
+  </div>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+  </script>
+  <script src="script.js"></script>
+</body>
+
 </html>
