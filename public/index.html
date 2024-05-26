@@ -40,11 +40,18 @@
         <div class="userGoal">
           <!-- Current User Goal Tab -->
           <div class="goalTab">
-            <div class="goalTitle">Read 20 Books in 2024</div>
+            <div class="goalTitle">Goal: Read 20 Books in 2024</div>
             <div class="goalProgress">Progress: 10 out of 20 books</div>
-            <!-- SVG container for the pie chart -->
+            <!-- Canvas for the chart -->
+            <div class="goalProgressBar">
+              <div class="goalProgressBarDone" goal-done="50">
+                50%
+              </div>
+            </div>
+
           </div>
         </div>
+
 
         <div class="friendActivity">
           <h1 class="montserrat-heading">Friend Activity</h1>
@@ -67,13 +74,13 @@
           </div>
         </div>
 
-
         <div class="currentReadInfo">
           <div class="title-and-button">
-            <h1>Current Read Info</h1>
+            <h1>Current Read</h1>
             <button class="add-book-button">Add new book</button>
           </div>
           <!-- Book Progress Info Tab -->
+
           <div class="bookProgressInfo">
             <div class="detailsWrapper">
               <img
@@ -94,18 +101,37 @@
 
           </div>
 
+          <div class="bookProgressInfo">
+            <div class="detailsWrapper">
+              <img src="https://bookgrocer.com/cdn/shop/products/9780007350803.jpg?v=1640171404"
+                alt="Book Cover" class="bookCover">
+              <div class="bookDetails">
+                <h2 class="bookTitle">Jane Eyre</h2>
+                <p class="bookAuthor">by Charlotte Brontë</p>
+                <p class="bookDescription">A classic Gothic novel about the orphaned Jane Eyre, who becomes a governess
+                  and falls in love with her employer, Mr. Rochester, while grappling with themes of morality,
+                  independence, and social class.</p>
+                <div class="progress">
+                  <div class="progress-done" data-done="70">70%</div>
+                </div>
+              </div>
+              <i class="fa-solid fa-ellipsis meatball-icon"></i> <!-- Added icon -->
+            </div>
+
+          </div>
+
           <!-- Book Progress Info Tab -->
           <div class="bookProgressInfo">
             <div class="detailsWrapper">
               <img
-                src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1713542603i/11297.jpg"
+                src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1597676656i/44279110.jpg"
                 alt="Book Cover" class="bookCover">
               <div class="bookDetails">
-                <h2 class="bookTitle">Norwegian Wood</h2>
-                <p class="bookAuthor">by Haruki Murakami</p>
-                <p class="bookDescription">A nostalgic story of love and loss set in 1960s Tokyo, following Toru
-                  Watanabe, a university student, as he navigates his feelings for two very different women: the
-                  introspective Naoko, and the lively and outgoing Midori.</p>
+                <h2 class="bookTitle">My Years of Rest and Relaxation</h2>
+                <p class="bookAuthor">by Ottessa Moshfegh</p>
+                <p class="bookDescription">A disillusioned young woman in New York City decides to sleep for a year
+                  using medications, hoping for personal transformation. The novel explores themes of depression,
+                  isolation, and the search for meaning.</p>
                 <div class="progress">
                   <div class="progress-done" data-done="70">70%</div>
                 </div>
@@ -139,7 +165,8 @@
           <h1>Data Insight</h1>
           <div class="dataInsightTab">
             <h1>Your favourite Genre</h1>
-            <!-- Insert insight content here -->
+            <!-- Canvas element for the polar area chart -->
+            <canvas id="genreChart"></canvas>
           </div>
           <div class="dataComparison">
             <div class="comparisonBookMonth">
@@ -204,7 +231,10 @@
         <input type="number" id="editPagesRead" name="editPagesRead">
         <label for="editBookNotes">Book Notes:</label>
         <textarea id="editBookNotes" name="editBookNotes"></textarea>
-        <button type="submit" id="saveChangesBtn">Save Changes</button>
+        <div class="buttonContainer">
+          <button type="submit" id="saveChangesBtn">Save Changes</button>
+          <button type="button" id="deleteProgressBtn">Delete Progress</button>
+        </div>
       </form>
     </div>
   </div>
