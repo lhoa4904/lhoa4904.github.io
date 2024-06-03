@@ -8,33 +8,36 @@
 }
 
 .all-content {
-  padding-bottom: 3vw;
+  color: #2C665F,
+    /* Set text color */
 }
 
 /* Daily Quote Section */
 .dailyQuote {
   grid-area: 1 / 1 / 2 / 3;
   /* Updated grid-area to span two columns */
-  background-color: #F7F7F7;
+  background-color: #FCFCFC;
 }
 
 .quoteText {
   font-style: italic;
   margin-left: 2vw;
+  margin-bottom: 5px;
   /* Add any other styles for the quote text */
 }
 
 .quoteSource {
   font-weight: bold;
   margin-left: 2vw;
-  /* Add any other styles for the quote source */
+  font-size: 14px
+    /* Add any other styles for the quote source */
 }
 
 /* User Goal Section */
 .userGoal {
   grid-area: 1 / 3 / 2 / 5;
   /* New grid-area for User Goal */
-  background-color: #F7F7F7;
+  background-color: #FCFCFC;
   /* Rounded corners */
   padding: 1vw;
   display: flex;
@@ -52,10 +55,14 @@
   padding: 1vw;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 300px;
-  margin: 0 auto; /* Center horizontally */
-  display: flex; /* Use flexbox */
-  flex-direction: column; /* Stack items vertically */
-  align-items: center; /* Center horizontally */
+  margin: 0 auto;
+  /* Center horizontally */
+  display: flex;
+  /* Use flexbox */
+  flex-direction: column;
+  /* Stack items vertically */
+  align-items: center;
+  /* Center horizontally */
 }
 
 .goalTitle {
@@ -90,8 +97,7 @@
 }
 
 .goalProgressBarDone {
-  background: linear-gradient(to left, #F2709C, #FF9472);
-  box-shadow: 0 3px 3px -5px #F2709C, 0 2px 5px #F2709C;
+  background: #009A29;
   border-radius: 20px;
   color: #fff;
   display: flex;
@@ -99,16 +105,107 @@
   justify-content: center;
   height: 100%;
   width: 0;
-  opacity: 1;
-  transition: width 1s ease;
+  opacity: 0;
+  transition: 1s ease 0.3s;
+  font-size: 12px;
 }
 
+/* Styling for the completed book section */
+.completedBooksTab {
+  display: flex;
+  
+  flex-direction: column;
+ 
+  background-color: #FFFFFF;
+  /* White background */
+  border-radius: 4px;
+  /* Rounded corners */
+  padding: 20px;
+  /* Padding around the tab content */
+  margin-left: 2vw;
+  margin-right: 2vw;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  /* Add shadow */
+}
+
+.completedBook {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5px; /* Add spacing between completed books */
+}
+
+.noteDisplay {
+  position: relative;
+  display: flex;
+  flex-direction: column; /* Display comments in a single column */
+}
+
+.note {
+  background-color: #ddd;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  margin-right: 55px;
+  opacity: 0; /* Initially hide comment */
+  animation: fadeIn 0.3s forwards; /* Apply animation */
+}
+
+.noteInput {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.noteInput input[type="text"] {
+  width: 450px;
+  height: 30px;
+  border-radius: 50px;
+  padding: 5px;
+  border: 1px solid #ccc; /* Optional: add border color */
+  box-sizing: border-box;
+}
+
+.submitNoteButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submitNoteButton i {
+  font-size: 24px; /* Increase the size of the icon */
+  color: orange; /* Change the icon color to orange */
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.note .deleteIcon {
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  cursor: pointer;
+  color: white; /* Change color as needed */
+  font-size: 10px;
+}
 
 
 /* Friend Activity Section */
 .friendActivity {
   grid-area: 1 / 5 / 5 / 5;
-  background-color: #F7F7F7;
+  background-color: #FCFCFC;
   border-left: 1px solid #E2E2E2;
   /* Change border color */
 }
@@ -116,7 +213,7 @@
 /* Current Read Info Section */
 .currentReadInfo {
   grid-area: 2 / 1 / 5 / 3;
-  background-color: #F7F7F7;
+  background-color: #FCFCFC;
   border: 1px solid #E2E2E2;
   /* Change border color */
   display: flex;
@@ -129,25 +226,27 @@
 }
 
 
+
 /* Add Book Button */
 .add-book-button {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Nunito';
   /* Add this line */
-  background-color: #000000;
+  background-color: transparent;
   /* Black background */
-  color: white;
+  color: #7A7A7A;
   /* White text */
-  border: none;
-  padding: 12px;
+  border: 1px solid #C2C2C2;
+  /* Border color */
+  padding: 6px 20px;
+  /* Padding for the button */
+  padding-left: 15px;
   /* Adjust padding as needed */
   text-align: center;
   text-decoration: none;
-  font-size: 12px;
-  border-radius: 8px;
+  font-size: 14px;
+  border-radius: 4px;
   /* Rounded corners */
-  width: 150px;
-  height: 30px;
-  display: inline-flex;
+  display: flex;
   /* Change display property */
   align-items: center;
   /* Align text vertically */
@@ -155,9 +254,16 @@
   /* Align text horizontally */
   margin-left: auto;
   /* Push button to the right edge */
+  box-shadow: none;
+  gap: 8px;
 }
 
-/* Book Progress Info Section */
+.add-book-button:hover {
+  color: white;
+  background-color: black;
+}
+
+/* Book Progress Info Tab */
 .bookProgressInfo {
   display: flex;
   flex-direction: column;
@@ -166,23 +272,19 @@
   align-items: center;
   background-color: #FFFFFF;
   /* White background */
-  border-radius: 8px;
+  border-radius: 4px;
   /* Rounded corners */
   padding: 1vw;
   /* Padding around the tab content */
   margin-left: 2vw;
   margin-right: 2vw;
-
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   /* Add shadow */
 }
 
-
-
 .detailsWrapper {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
 }
@@ -209,27 +311,25 @@
   /* Maintain aspect ratio */
   margin-right: 20px;
   /* Spacing between image and text */
-   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Add shadow */
 }
 
 /* Book Details */
 .bookDetails {
-  flex: 1;
-  /* Allow text to fill remaining space */
+  flex: auto;
 }
 
 /* Book Title */
 .bookTitle {
   font-size: 16px;
-  margin-bottom: 1px;
-  /* Spacing between title and author */
+  margin-bottom: 5px;
 }
 
 /* Book Author */
 .bookAuthor {
-  font-style: italic;
-  margin-bottom: 2px;
   font-size: 15px;
+  color: #808080;
   /* Spacing between author and description */
 }
 
@@ -241,20 +341,22 @@
 }
 
 /* PROGRESS BAR */
-.progress {
+
+.progress,
+.defaultProgress {
   background-color: #d8d8d8;
   border-radius: 20px;
   position: relative;
   margin-top: 0.5vw;
   /* Adjust margin as needed */
-  height: 20px;
+  height: 10%;
   width: 100%;
   /* Ensure it fits the container width */
 }
 
-.progress-done {
-  background: linear-gradient(to left, #F2709C, #FF9472);
-  box-shadow: 0 3px 3px -5px #F2709C, 0 2px 5px #F2709C;
+.progress-done,
+.defaultprogress-done {
+  background: #009A29;
   border-radius: 20px;
   color: #fff;
   display: flex;
@@ -264,6 +366,7 @@
   width: 0;
   opacity: 0;
   transition: 1s ease 0.3s;
+  font-size: 12px;
 }
 
 .buttonContainer {
@@ -321,7 +424,7 @@
   background-color: #000;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -338,11 +441,10 @@
 }
 
 
-
 /* Data Insight Section */
 .dataInsight {
   grid-area: 2 / 3 / 5 / 5;
-  background-color: #F7F7F7;
+  background-color: #FCFCFC;
   border-top: 1px solid #E2E2E2;
   /* Change border color */
 }
@@ -352,7 +454,7 @@
   /* White background */
   border-radius: 8px;
   /* Rounded corners */
-  padding: 20px;
+
   /* Padding inside the tab */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   /* Shadow effect */
@@ -360,13 +462,85 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
-/* CSS for the polar area chart */
-.dataInsightTab canvas {
-  max-width: 400px; /* Adjust the maximum width as needed */
-  width: 100%; /* Ensure it fills its container */
-  height: auto; /* Maintain aspect ratio */
+.dataInsightTab h1 {
+  /* Your specific styles for h1 elements inside .dataInsightTab */
+  margin-left: 2vw;
+  color: #1A3D39;
+}
+
+/* CSS for the DOUGNUT chart */
+/* Main Container for Doughnut Chart */
+.genre-chart-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* Adjusted to start from the left */
+  max-height: 300px;
+  position: relative;
+  margin-right: 2vw;
+  /* Added margin to the right to create space */
+  margin-bottom: 1vw;
+}
+
+/* Paragraph Positioning */
+.genre-chart-container p {
+  position: relative;
+  margin-left: 2vw;
+  /* Adjusted to move the paragraph to the right */
+}
+
+/* Inner Container for Doughnut Chart */
+
+.genre-chart-inner,
+.genre-legend-container {
+  display: inline-block;
+}
+
+/* Chart size */
+#favoriteGenreChart {
+  width: 250px;
+  /* Adjust the width as needed */
+  height: auto;
+  /* Adjust the height as needed */
+}
+
+/* Legend font size */
+#genreLegend {
+  font-size: 14px;
+}
+
+/* Legend Container */
+.genre-legend-container {
+  display: inline-block;
+  margin-right: 1vw;
+  /* Added margin to move the legends closer to the chart */
+}
+
+.genre-legend-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+.genre-legend-container li {
+  display: flex;
+  align-items: center;
+}
+
+.genre-legend-container li span {
+  display: inline-block;
+}
+
+.genre-legend-container li span.chart-legend {
+  width: 15px;
+  height: 15px;
+  margin-right: 20px;
+  margin-bottom: 9px;
+  border-radius: 100px;
 }
 
 
@@ -406,6 +580,8 @@
 
 
 
+
+
 /* Base HTML and Body Styles */
 html,
 body {
@@ -423,7 +599,7 @@ td {
 /* Heading Styles */
 
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 
 /* Specific Overrides */
@@ -431,9 +607,9 @@ body {
 h1 {
   font-size: 18px;
   margin-left: 2vw;
-  font-family: Montserrat;
+  font-family: Nunito;
   font-weight: bold;
-
+  color: #1A3D39;
 }
 
 h2 {
@@ -444,6 +620,13 @@ h2 {
 
 h3 {
   font-size: 16%;
+}
+
+p {
+  margin: 0;
+  /* Reset default margin */
+  margin-bottom: 2px;
+  /* Add custom bottom margin */
 }
 
 /* Figure and Figcaption Styles */
@@ -463,15 +646,23 @@ figcaption {
 
 /* Navigation Bar Styling */
 nav.main-nav {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #FCFCFC;
+  color: black;
   padding: 7px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 5px;
   width: 100%;
+  border-bottom-left-radius: 8px;
+  /* Rounded bottom left corner */
+  border-bottom-right-radius: 8px;
+  /* Rounded bottom right corner */
+  border-bottom: 1px solid #E2E2E2;
+  /* Corrected border-bottom property */
+  box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.1);
+  /* Shadow effect at the bottom */
 }
+
 
 /* User Info Styling */
 .user-info {
@@ -485,50 +676,33 @@ nav.main-nav {
   width: 37px;
   height: 37px;
   border-radius: 50%;
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-right: 15px;
+  margin-left: 2vw;
 }
 
-/* Welcome Text Styling */
-.welcome-text {
-  font-size: 14px;
-  font-style: italic;
+/* CSS for the button */
+.edit-profile-btn {
+  background-color: transparent;
+  color: #7A7A7A;
+  /* White text color */
+  padding: 6px 20px;
+  /* Padding for the button */
+  border: 1px solid #C2C2C2;
+  /* Border color */
+  border-radius: 4px;
+  /* Rounded corners */
+  cursor: pointer;
+  /* Cursor style */
+  font-family: 'Nunito';
+  box-shadow: none;
+  transition: background-color 0.3s, color 0.3s;
+  /* Smooth transition effect */
 }
 
-/* Footer Styles */
-footer ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-}
-
-footer {
-  position: fixed;
-  margin-top: 2vw;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #000000;
-  color: #ffffff;
-  padding: 10px 0;
-  text-align: center;
-}
-
-footer ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-footer li {
-  margin-bottom: 5px;
-  font-size: 15px;
-}
-
-footer li:last-child {
-  margin-right: 0;
+/* Style the button on hover */
+.edit-profile-btn:hover {
+  color: white;
+  background-color: black;
 }
 
 
@@ -576,7 +750,7 @@ footer li:last-child {
   /* Increase padding for larger input boxes */
   border: 1px solid #787171;
   /* Change the outline color */
-  border-radius: 5px;
+  border-radius: 4px;
   /* Rounded corners */
 }
 
@@ -586,24 +760,18 @@ footer li:last-child {
   /* Increase padding for larger input boxes */
   border: 1px solid #787171;
   /* Change the outline color */
-  border-radius: 5px;
+  border-radius: 4px;
   /* Rounded corners */
 }
 
 #addBookForm button {
   margin-top: 20px;
   padding: 10px;
-  background-color: #000000;
+  background-color: green;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
-}
-
-/* Friend Activity Section */
-.friendActivity {
-  background-color: #F7F7F7;
-  border: 2px solid #E2E2E2;
 }
 
 .friend {
@@ -691,29 +859,53 @@ footer li:last-child {
   /* Increase padding for larger input boxes */
   border: 1px solid #787171;
   /* Change the outline color */
-  border-radius: 5px;
+  border-radius: 4px;
   /* Rounded corners */
 }
 
-#editReadingProgressForm button {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #000000;
+
+/* Styling for Save Changes button */
+#saveChangesBtn {
+  background-color: green;
   color: white;
   border: none;
-  border-radius: 5px;
+  margin-top: 25px;
+  padding: 10px 20px;
   cursor: pointer;
+  border-radius: 5px;
+  font-size: 15px;
+  width: 48%;
+  margin-right: 6px;
 }
 
-button:hover {
-  background-color: navy;
+/* Styling for Delete Progress button */
+#deleteProgressBtn {
+  background-color: transparent;
+  color: darkgrey;
+  border: 1px solid grey;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 15px;
+  margin-top: 25px;
+  width: 48%;
+}
+
+/* Optional: Add hover effects */
+#saveChangesBtn:hover {
+  background-color: darkgreen;
+}
+
+#deleteProgressBtn:hover {
+  border-color: darkgrey;
+  color: black;
 }
 
 button {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
 }
 
+/* Media Query for smaller screens */
 /* Media Query for smaller screens */
 @media screen and (max-width: 768px) {
 
@@ -723,19 +915,17 @@ button {
     flex-direction: column;
   }
 
-  /* Reset grid-area for individual sections */
+  /* Reset grid-area for individual sections and ensure full width */
   .dailyQuote,
   .userGoal,
   .friendActivity,
   .currentReadInfo,
   .dataInsight {
     grid-area: auto;
-    /* Reset grid-area */
     width: 100%;
-    /* Ensure sections take full width */
   }
 
-  /* Reduce font sizes by 2 pixels for all relevant classes, including text inside forms and pop-up forms */
+  /* Reduce font sizes by 1 pixel for all relevant classes */
   .quoteText,
   .quoteSource,
   .goalTitle,
@@ -778,12 +968,7 @@ button {
   .popup-content input,
   .popup-content textarea,
   .popup-content button {
-    font-size: calc(100% - 2px);
-    /* Decrease by 2 pixels */
-  }
-
-  .all-content {
-    padding-bottom: 30px;
+    font-size: calc(100% - 1px);
   }
 
   /* Add spacing between sections and elements */
@@ -794,35 +979,49 @@ button {
   .dataInsight,
   .dataInsightTab,
   .comparisonBookMonth,
-  .comparisonPageDay {
-    padding: 1vw;
-    /* Add bottom margin to create space between sections */
-  }
-
+  .comparisonPageDay,
   .goalTab,
   .bookProgressInfo,
   .friend {
-    padding: 1vw;
-    /* Add bottom margin to create space between elements */
+    padding: 2vw;
   }
 
-  .bookCover {
-    width: 100px;
-    height: auto;
-    margin-right: 3vw;
-    margin-left: 2vw;
-  }
-
-  .add-book-button {
-    width: 140px;
-    height: 30px;
-  }
-
-  .title-and-button {
-    margin-bottom: 3vw;
-  }
-
+  .quoteSource,
+  .goalTab,
+  .title-and-button,
   .bookProgressInfo {
     margin-bottom: 3vw;
   }
+
+  /* Adjust book cover size and margin */
+  .bookCover {
+    width: 90px;
+    margin-right: 3vw;
+  }
+
+  /* Adjust data insight tab styles */
+  .dataInsightTab h1 {
+    font-size: 14px;
+  }
+
+  .dataInsightTab {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Ensure canvas in data insight tab fits the container width */
+
+
+  /* Adjust friend activity section border */
+  .friendActivity {
+    border-top: 1px solid #E2E2E2;
+  }
+
+  /* Adjust comparison chart styles */
+  .comparisonNumChart {
+    margin-bottom: auto;
+  }
+
+
+    
 }

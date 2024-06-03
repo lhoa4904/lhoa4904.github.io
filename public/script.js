@@ -1,12 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Initialize goal progress bar
     const goalProgressBarDone = document.querySelector('.goalProgressBar .goalProgressBarDone');
     const goalProgressBarWidth = goalProgressBarDone.getAttribute('goal-done');
     goalProgressBarDone.style.width = goalProgressBarWidth + '%';
     goalProgressBarDone.style.opacity = 1;
-});
 
-
-document.addEventListener("DOMContentLoaded", () => {
     const addBookButton = document.querySelector(".add-book-button");
     const popupOverlay = document.getElementById("popupOverlay");
     const closeButton = document.querySelector(".close-button");
@@ -34,13 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const bookAuthor = document.getElementById("bookAuthor").value;
         const bookDescription = document.getElementById("bookDescription").value;
         const bookCover = document.getElementById("bookCover").value;
-        const bookProgress = 0; // Initial progress
+        const totalPages = parseInt(document.getElementById("totalPages").value); // Added this line to get total pages
+        const pagesRead = 0; // Initial pages read
 
-        // Save book progress to localStorage
-        saveBookProgress({ bookTitle, bookAuthor, bookDescription, bookCover, progress: bookProgress });
+        // Save book progress to localStorage, including totalPages and pagesRead
+        saveBookProgress({ bookTitle, bookAuthor, bookDescription, bookCover, totalPages, pagesRead });
 
-        // Add book progress to UI
-        addBookToUI({ bookTitle, bookAuthor, bookDescription, bookCover, progress: bookProgress });
+        // Add book progress to UI, including totalPages and pagesRead
+        addBookToUI({ bookTitle, bookAuthor, bookDescription, bookCover, totalPages, pagesRead });
 
         popupOverlay.style.display = "none";
         addBookForm.reset();
@@ -68,18 +67,21 @@ document.addEventListener("DOMContentLoaded", () => {
     function addBookToUI(book) {
         const bookProgressInfo = document.createElement("div");
         bookProgressInfo.classList.add("bookProgressInfo");
+        bookProgressInfo.dataset.totalPages = book.totalPages; // Store totalPages in dataset
+        bookProgressInfo.dataset.pagesRead = book.pagesRead; // Store pagesRead in dataset
+        const progress = (book.pagesRead / book.totalPages) * 100; // Calculate progress
         bookProgressInfo.innerHTML = `
             <div class="detailsWrapper">
                 <img src="${book.bookCover}" alt="Book Cover" class="bookCover">
                 <div class="bookDetails">
-                    <h2 class="bookTitle">${book.bookTitle}</h2>
+                    <p class="bookTitle">${book.bookTitle}</p>
                     <p class="bookAuthor">by ${book.bookAuthor}</p>
                     <p class="bookDescription">${book.bookDescription}</p>
+                    <div class="progress">
+                        <div class="progress-done" data-done="${progress}" style="width: ${progress}%; opacity: 1;">${Math.round(progress)}%</div>
+                    </div>
                 </div>
                 <i class="fa-solid fa-ellipsis meatball-icon"></i>
-            </div>
-            <div class="progress">
-                <div class="progress-done" data-done="${book.progress}">${book.progress}%</div>
             </div>
         `;
         currentReadInfo.appendChild(bookProgressInfo);
@@ -99,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 editPopupOverlay.style.display = 'flex';
                 const bookProgressInfo = icon.closest('.bookProgressInfo');
                 const progressDone = bookProgressInfo.querySelector('.progress-done');
-                const currentPagesRead = Math.round(progressDone.getAttribute('data-done') * 300 / 100);
+                const currentPagesRead = parseInt(bookProgressInfo.dataset.pagesRead);
 
                 document.getElementById('editPagesRead').value = currentPagesRead;
 
@@ -116,15 +118,24 @@ document.addEventListener("DOMContentLoaded", () => {
         if (saveChangesButton) {
             saveChangesButton.addEventListener('click', (e) => {
                 e.preventDefault();
-                const totalBookPages = 300;
-                const totalPagesRead = document.getElementById('editPagesRead').value;
+                const bookProgressInfo = editPopupOverlay.currentBookProgressInfo;
+                const totalBookPages = parseInt(bookProgressInfo.dataset.totalPages);
+                const pagesReadToday = parseInt(document.getElementById('editPagesRead').value);
+                const previousPagesRead = parseInt(bookProgressInfo.dataset.pagesRead);
+                const totalPagesRead = previousPagesRead + pagesReadToday; // Accumulate the pages read
                 const bookProgressPercentage = (totalPagesRead / totalBookPages) * 100;
 
-                const progressBar = editPopupOverlay.currentBookProgressInfo.querySelector('.progress-done');
+                const progressBar = bookProgressInfo.querySelector('.progress-done');
                 progressBar.style.width = `${bookProgressPercentage}%`;
                 progressBar.textContent = `${Math.round(bookProgressPercentage)}%`;
                 progressBar.setAttribute('data-done', bookProgressPercentage);
                 progressBar.style.opacity = 1;
+
+                // Update localStorage
+                updateBookProgress(bookProgressInfo.querySelector('.bookTitle').innerText, totalPagesRead);
+
+                // Update the dataset attribute
+                bookProgressInfo.dataset.pagesRead = totalPagesRead;
 
                 editPopupOverlay.style.display = 'none';
             });
@@ -135,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const bookProgressInfo = editPopupOverlay.currentBookProgressInfo;
                 if (bookProgressInfo) {
                     bookProgressInfo.remove();
-                    // Optionally, you can also remove the book from localStorage here
+                    // Remove the book from localStorage
                     removeBookProgress(bookProgressInfo.querySelector('.bookTitle').innerText);
                 }
                 editPopupOverlay.style.display = 'none';
@@ -158,6 +169,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Function to update book progress in localStorage
+    function updateBookProgress(bookTitle, newPagesRead) {
+        let bookProgress = JSON.parse(localStorage.getItem('bookProgress')) || [];
+        bookProgress = bookProgress.map(book => {
+            if (book.bookTitle === bookTitle) {
+                book.pagesRead = newPagesRead;
+                book.progress = (newPagesRead / book.totalPages) * 100;
+            }
+            return book;
+        });
+        localStorage.setItem('bookProgress', JSON.stringify(bookProgress));
+    }
+
     // Function to remove book progress from localStorage
     function removeBookProgress(bookTitle) {
         let bookProgress = JSON.parse(localStorage.getItem('bookProgress')) || [];
@@ -171,6 +195,40 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize meatball icon click event
     initializeMeatballIconClick();
 });
+
+// DEFAULT PROGRESS BAR
+document.addEventListener("DOMContentLoaded", () => {
+  // Initialize default progress bars
+  const defaultProgressBars = document.querySelectorAll('.defaultprogress-done');
+  defaultProgressBars.forEach(progressBar => {
+    const defaultProgressWidth = progressBar.getAttribute('defaultdata-done');
+    progressBar.style.width = defaultProgressWidth + '%';
+    progressBar.style.opacity = 1;
+  });
+
+  // Load and set saved progress from localStorage
+  const savedProgress = JSON.parse(localStorage.getItem('savedProgress'));
+  if (savedProgress) {
+    const changeableProgressBars = document.querySelectorAll('.progress-done');
+    changeableProgressBars.forEach(progressBar => {
+      const bookTitle = progressBar.closest('.bookProgressInfo').querySelector('.bookTitle').innerText;
+      if (savedProgress[bookTitle]) {
+        const savedWidth = savedProgress[bookTitle];
+        progressBar.style.width = savedWidth + '%';
+        progressBar.textContent = Math.round(savedWidth) + '%';
+        progressBar.setAttribute('data-done', savedWidth);
+        progressBar.style.opacity = 1;
+      }
+    });
+  }
+});
+
+// Function to save progress to localStorage
+function saveProgress(bookTitle, progress) {
+  let savedProgress = JSON.parse(localStorage.getItem('savedProgress')) || {};
+  savedProgress[bookTitle] = progress;
+  localStorage.setItem('savedProgress', JSON.stringify(savedProgress));
+}
 
 // BAR CHART //
 document.addEventListener('DOMContentLoaded', function() {
@@ -190,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Chart.js initialization for books comparison
     const ctxBooks = document.getElementById('comparisonBarChart').getContext('2d');
-    const myBooksChart = new Chart(ctxBooks, {
+    new Chart(ctxBooks, {
         type: 'bar',
         data: {
             labels: ['Last Month', 'This Month'],
@@ -198,22 +256,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 label: 'Books Completed',
                 data: [lastMonthBook, thisMonthBook],
                 backgroundColor: ['rgba(76, 175, 80, 0.2)', 'rgba(255, 152, 0, 0.2)'],
-                borderColor: ['rgba(56, 142, 60, 1)', 'rgba(245, 124, 0, 1)'],
-                borderWidth: 1
             }]
         },
         options: {
             scales: {
-                y: {
-                    beginAtZero: true
-                }
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
             }
         }
     });
 
     // Chart.js initialization for pages read comparison
     const ctxPages = document.getElementById('comparisonPageDayChart').getContext('2d');
-    const myPagesChart = new Chart(ctxPages, {
+    new Chart(ctxPages, {
         type: 'bar',
         data: {
             labels: ['Yesterday', 'Today'],
@@ -221,15 +279,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 label: 'Pages Read',
                 data: [pagesReadYesterday, pagesReadToday],
                 backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
-                borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
-                borderWidth: 1
             }]
         },
         options: {
             scales: {
-                y: {
-                    beginAtZero: true
-                }
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
             }
         }
     });
@@ -237,41 +295,157 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // GENRE INSIGHT GRAPH
 
-// Assuming you have already fetched the genreInsight data from your model
-const genreData = {
-  allTimeFavGenre: "Fantasy",
-  pieChartGenre: { fantasy: 30, mystery: 20, scienceFiction: 50 },
-  pieChartLegend: ["Fantasy", "Mystery", "Science Fiction"]
-};
+document.addEventListener('DOMContentLoaded', function () {
+    const ctx = document.getElementById('favoriteGenreChart').getContext('2d');
 
-// Create the dataset for the polar area chart
-const data = {
-  labels: genreData.pieChartLegend,
-  datasets: [{
-    data: Object.values(genreData.pieChartGenre),
-    backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]
-  }]
-};
+    const chartData = [
+        { genre: "Classic", booksRead: 39 },
+        { genre: "Mystery", booksRead: 18 },
+        { genre: "Romance", booksRead: 9 },
+        { genre: "Biography", booksRead: 5 },
+    ];
 
-// Chart configuration
-const config = {
-  type: 'polarArea',
-  data: data,
-  options: {
-    plugins: {
-      legend: {
-        position: 'right'
-      }
+    let genreLabels = [],
+        booksReadData = [],
+        sum = 0;
+
+    for (let i = 0; i < chartData.length; i++) {
+        genreLabels.push(chartData[i].genre);
+        booksReadData.push(chartData[i].booksRead);
+        sum += chartData[i].booksRead;
     }
+
+
+    const textInside = sum.toString();
+
+    const myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: genreLabels,
+            datasets: [{
+                label: 'Books Read',
+                data: booksReadData,
+                backgroundColor: [
+                    "#a2d6c4",
+                    "#36A2EB",
+                    "#3e8787",
+                    "#579aac",
+                ]
+            }]
+        },
+        options: {
+            elements: {
+                center: {
+                    text: textInside
+                }
+            },
+            responsive: true,
+            legend: false,
+            legendCallback: function(chart) {
+                let legendHtml = [];
+                legendHtml.push('<ul>');
+                let item = chart.data.datasets[0];
+                for (let i = 0; i < item.data.length; i++) {
+                    legendHtml.push('<li>');
+                    legendHtml.push('<span class="chart-legend" style="background-color:' + item.backgroundColor[i] +'"></span>');
+                    legendHtml.push('<span class="chart-legend-label-text">' + chart.data.labels[i] + '</span>');
+                    legendHtml.push('</li>');
+                }
+                legendHtml.push('</ul>');
+                return legendHtml.join("");
+            },
+            tooltips: {
+                enabled: true,
+                mode: 'label',
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        let indice = tooltipItem.index;
+                        return 'You read ' + data.datasets[0].data[indice] + ' ' + data.labels[indice] + ' books this month';
+                    }
+                }
+            }
+        }
+    });
+
+    document.getElementById('genreLegend').innerHTML = myChart.generateLegend();
+});
+
+function updateGoalProgress(progressPercentage) {
+  const circle = document.querySelector('.goal-progress-ring-circle');
+  const text = document.querySelector('.goal-progress-text');
+
+  const radius = circle.r.baseVal.value;
+  const circumference = 2 * Math.PI * radius;
+
+  const offset = circumference - progressPercentage / 100 * circumference;
+
+  circle.style.strokeDasharray = `${circumference} ${circumference}`;
+  circle.style.strokeDashoffset = offset;
+
+  text.textContent = `${progressPercentage}%`;
+}
+ 
+
+// Get the input field, submit button, note display area, and note error element
+const userInput = document.getElementById('userNote');
+const submitBtn = document.querySelector('.submitNoteButton');
+const noteDisplay = document.querySelector('.noteDisplay');
+const noteError = document.getElementById('noteError');
+
+// Retrieve notes from local storage if any
+let notes = JSON.parse(localStorage.getItem('notes')) || [];
+
+// Function to render notes
+function renderNotes() {
+  const noteDisplay = document.querySelector('.noteDisplay');
+  noteDisplay.innerHTML = '';
+  notes.forEach((note, index) => {
+    const div = document.createElement('div');
+    div.classList.add('note');
+    div.textContent = note;
+
+    // Add the trash icon directly within each note container
+    div.innerHTML += '<i class="deleteIcon fas fa-trash fa-lg" onclick="deleteNote(' + index + ')"></i>';
+
+    noteDisplay.appendChild(div);
+  });
+}
+
+// Function to save notes to local storage
+function saveNotes() {
+  localStorage.setItem('notes', JSON.stringify(notes));
+}
+
+// Display existing notes when the page loads
+renderNotes();
+
+// Function to delete a note
+function deleteNote(index) {
+  const noteDisplay = document.querySelector('.noteDisplay');
+  const noteToRemove = noteDisplay.children[index];
+  noteToRemove.classList.add('deletedNote'); // Add a class for CSS animation
+  setTimeout(() => {
+    notes.splice(index, 1); // Remove the note from the array
+    saveNotes(); // Save the updated notes to local storage
+    renderNotes(); // Render the updated notes
+  }, 300); // Wait for animation to finish before deleting note
+}
+
+// Add event listener to the submit button
+submitBtn.addEventListener('click', function(event) {
+  event.preventDefault(); // Prevent the default form submission
+
+  // Check if the input field is empty or doesn't meet the word limit
+  const words = userInput.value.trim().split(/\s+/).length;
+  if (userInput.value.trim().length === 0 || words < 15) {
+    noteError.style.display = 'block';
+    return; // Exit the function if validation fails
   }
-};
 
-// Get the canvas element
-const genreCanvas = document.getElementById('genreChart');
-// Create the chart
-const genreChart = new Chart(genreCanvas, config);
-
-
-
-
-
+  // Add the new note to the notes array
+  notes.push(userInput.value.trim());
+  saveNotes();
+  renderNotes();
+  userInput.value = ''; // Clear input field
+  noteError.style.display = 'none'; // Hide the error message
+});

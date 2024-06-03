@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap">
+  <link rel="stylesheet" href='https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap'>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap">
   <title>Page Pal</title>
@@ -17,9 +17,9 @@
     <nav class="main-nav" role="navigation">
       <div class="user-info">
         <img
-          src="https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_3x2.jpg?w=1436&h=958"
+          src="https://external-preview.redd.it/mNfsnEyWD-_1GBPdQnjsGaYw14nAcUgaIgB8mcXsKrA.jpg?auto=webp&s=95a35dbfb14a0e4235f9a2466d5c82f1022fe67b"
           alt="User Image" class="user-image">
-        <span class="welcome-text">Welcome back</span>
+        <button class="edit-profile-btn">Edit Profile</button>
       </div>
     </nav>
 
@@ -28,6 +28,7 @@
   <main class="all-content">
     <article>
       <section class="parent">
+        
         <div class="dailyQuote">
           <h1>Quote of the day</h1>
           <p class="quoteText">"I cannot make you understand. I cannot make anyone understand what is happening inside
@@ -77,7 +78,8 @@
         <div class="currentReadInfo">
           <div class="title-and-button">
             <h1>Current Read</h1>
-            <button class="add-book-button">Add new book</button>
+            <button class="add-book-button"> <i class="fa-solid fa-plus"></i>
+              Add new book</button>
           </div>
           <!-- Book Progress Info Tab -->
 
@@ -87,13 +89,16 @@
                 src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1713542603i/11297.jpg"
                 alt="Book Cover" class="bookCover">
               <div class="bookDetails">
-                <h2 class="bookTitle">Norwegian Wood</h2>
+                <p class="bookTitle">Norwegian Wood</p>
                 <p class="bookAuthor">by Haruki Murakami</p>
                 <p class="bookDescription">A nostalgic story of love and loss set in 1960s Tokyo, following Toru
                   Watanabe, a university student, as he navigates his feelings for two very different women: the
                   introspective Naoko, and the lively and outgoing Midori.</p>
-                <div class="progress">
-                  <div class="progress-done" data-done="70">70%</div>
+                <!-- Default Fixed Progress Bar Component -->
+                <div class="defaultProgress">
+                  <div class="defaultprogress-done" defaultdata-done="70">
+                    70%
+                  </div>
                 </div>
               </div>
               <i class="fa-solid fa-ellipsis meatball-icon"></i> <!-- Added icon -->
@@ -106,13 +111,16 @@
               <img src="https://bookgrocer.com/cdn/shop/products/9780007350803.jpg?v=1640171404"
                 alt="Book Cover" class="bookCover">
               <div class="bookDetails">
-                <h2 class="bookTitle">Jane Eyre</h2>
+                <p class="bookTitle">Jane Eyre</p>
                 <p class="bookAuthor">by Charlotte Brontë</p>
                 <p class="bookDescription">A classic Gothic novel about the orphaned Jane Eyre, who becomes a governess
                   and falls in love with her employer, Mr. Rochester, while grappling with themes of morality,
                   independence, and social class.</p>
-                <div class="progress">
-                  <div class="progress-done" data-done="70">70%</div>
+                <!-- Default Fixed Progress Bar Component -->
+                <div class="defaultProgress">
+                  <div class="defaultprogress-done" defaultdata-done="60">
+                    60%
+                  </div>
                 </div>
               </div>
               <i class="fa-solid fa-ellipsis meatball-icon"></i> <!-- Added icon -->
@@ -127,16 +135,19 @@
                 src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1597676656i/44279110.jpg"
                 alt="Book Cover" class="bookCover">
               <div class="bookDetails">
-                <h2 class="bookTitle">My Years of Rest and Relaxation</h2>
+                <p class="bookTitle">My Years of Rest and Relaxation</p>
                 <p class="bookAuthor">by Ottessa Moshfegh</p>
                 <p class="bookDescription">A disillusioned young woman in New York City decides to sleep for a year
                   using medications, hoping for personal transformation. The novel explores themes of depression,
                   isolation, and the search for meaning.</p>
-                <div class="progress">
-                  <div class="progress-done" data-done="70">70%</div>
+                <!-- Default Fixed Progress Bar Component -->
+                <div class="defaultProgress">
+                  <div class="defaultprogress-done" defaultdata-done="80">
+                    80%
+                  </div>
                 </div>
               </div>
-              <i class="fa-solid fa-ellipsis meatball-icon"></i> <!-- Added icon -->
+              <i class="fa-solid fa-ellipsis meatball-icon"></i> <!-- Added meatball icon -->
             </div>
 
           </div>
@@ -147,13 +158,16 @@
               <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/62948299/2509798634.jpg" alt="Book Cover"
                 class="bookCover">
               <div class="bookDetails">
-                <h2 class="bookTitle">The Metamorphosis</h2>
+                <p class="bookTitle">The Metamorphosis</p>
                 <p class="bookAuthor">by Franz Kafka</p>
                 <p class="bookDescription">The story of Gregor Samsa, a traveling salesman who wakes
                   up one morning to find himself transformed into a gigantic insect. It explores themes of alienation,
                   guilt, and the absurdity of existence.</p>
-                <div class="progress">
-                  <div class="progress-done" data-done="70">70%</div>
+                <!-- Default Fixed Progress Bar Component -->
+                <div class="defaultProgress">
+                  <div class="defaultprogress-done" defaultdata-done="40">
+                    40%
+                  </div>
                 </div>
               </div>
               <i class="fa-solid fa-ellipsis meatball-icon"></i> <!-- Added icon -->
@@ -165,8 +179,13 @@
           <h1>Data Insight</h1>
           <div class="dataInsightTab">
             <h1>Your favourite Genre</h1>
-            <!-- Canvas element for the polar area chart -->
-            <canvas id="genreChart"></canvas>
+            <!-- Canvas element for the genre chart -->
+            <div class="genre-chart-container">
+                <div class="genre-chart-inner">
+                    <canvas id="favoriteGenreChart"></canvas>
+                </div>
+                <div class="genre-legend-container" id="genreLegend"></div>
+            </div>
           </div>
           <div class="dataComparison">
             <div class="comparisonBookMonth">
@@ -187,19 +206,39 @@
                 <canvas id="comparisonPageDayChart" style="width:100%; height:200px"></canvas>
               </div>
             </div>
-
           </div>
+
+          <div class="completedBooks">
+            <h1>Completed books</h1>
+            <div class="completedBooksTab">
+              <!-- Simple tab containing completed books -->
+              <div class="completedBook">
+                <img class="bookCover" src="https://m.media-amazon.com/images/I/515zE1GxvAL._SY445_SX342_.jpg" alt="Book Cover" style="width: 60px; height: auto;">
+                <div class="bookInfo">
+                  <h2 class="bookTitle">Book Title</h2>
+                  <p class="bookAuthor">Book Author</p>
+                  <p class="dateFinished">Date Finished: June 1, 2024</p>
+                </div>
+              </div>
+              <div class="notesSection">
+                <h2>Notes</h2>
+                <div class="noteDisplay"></div> <!-- Note display area -->
+                <div class="noteInput">
+                  <label for="userNote"></label>
+                  <input type="text" id="userNote" name="userNote">
+                  <button type="submit" class="submitNoteButton"><i class="fas fa-circle-arrow-up"></i></button>
+                </div>
+                <p id="noteError" style="color: red; font-family: 'Nunito'; font-size: 14px; margin-top: 5px; margin-left: 8px; display: none;">Please enter at least 15 characters.</p>
+              </div>
+
+            </div>
+          </div>
+          
         </div>
 
       </section>
     </article>
   </main>
-
-  <footer role="contentinfo">
-    <ul>
-      <li>Contact us</li>
-    </ul>
-  </footer>
 
   <!-- ADD NEW BOOK POP UP -->
   <div id="popupOverlay" class="popup-overlay">
@@ -213,6 +252,8 @@
         <input type="text" id="bookAuthor" name="bookAuthor" required>
         <label for="bookDescription">Description:</label>
         <textarea id="bookDescription" name="bookDescription" required></textarea>
+        <label for="totalPages">Total Pages:</label>
+        <input type="number" id="totalPages" name="totalPages" required>
         <label for="bookCover">Cover URL:</label>
         <input type="url" id="bookCover" name="bookCover" required>
         <button type="submit">Save</button>
