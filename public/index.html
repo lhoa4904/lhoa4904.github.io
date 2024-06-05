@@ -26,219 +26,207 @@
   </header>
 
   <main class="all-content">
-    <article>
-      <section class="parent">
-        
-        <div class="dailyQuote">
-          <h1>Quote of the day</h1>
-          <p class="quoteText">"I cannot make you understand. I cannot make anyone understand what is happening inside
-            me. I cannot even explain it to myself."</p>
-          <div class="quoteSource">
-            Franz Kafka, The Metamorphosis
-          </div>
-        </div>
+      <article>
+          <section class="parent">
 
-        <div class="userGoal">
-          <!-- Current User Goal Tab -->
-          <div class="goalTab">
-            <div class="goalTitle">Goal: Read 20 Books in 2024</div>
-            <div class="goalProgress">Progress: 10 out of 20 books</div>
-            <!-- Canvas for the chart -->
-            <div class="goalProgressBar">
-              <div class="goalProgressBarDone" goal-done="50">
-                50%
+              <!-- Daily Quote Section -->
+              <div class="dailyQuote">
+                  <h1>Quote of the day</h1>
+                  <p class="quoteText">"I cannot make you understand. I cannot make anyone understand what is happening inside me. I cannot even explain it to myself."</p>
+                  <div class="quoteSource">Franz Kafka, The Metamorphosis</div>
               </div>
-            </div>
 
-          </div>
-        </div>
-
-
-        <div class="friendActivity">
-          <h1 class="montserrat-heading">Friend Activity</h1>
-          <div class="friend" data-friend-id="6a7ef2ec-4f89-11d3-9a0c-0305e82c3301">
-            <img src="https://i.redd.it/zwfggeplutf61.jpg" alt="Friend 1" class="friend-image">
-            <div class="friend-info">
-              <p class="friend-name">Mimi</p>
-              <p class="current-read">Current Read: The Great Gatsby</p>
-            </div>
-          </div>
-
-          <div class="friend" data-friend-id="8c9ef2ec-4f89-11d3-9a0c-0305e82c3303">
-            <img
-              src="https://preview.redd.it/this-cat-looks-like-a-square-pillow-v0-8qsgsnbxqj2b1.jpg?auto=webp&s=3c472c9001ad10b8b5faab0b613b1a221a002374"
-              alt="Friend 3" class="friend-image">
-            <div class="friend-info">
-              <p class="friend-name">Bob</p>
-              <p class="current-read">Current Read: Pride and Prejudice</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="currentReadInfo">
-          <div class="title-and-button">
-            <h1>Current Read</h1>
-            <button class="add-book-button"> <i class="fa-solid fa-plus"></i>
-              Add new book</button>
-          </div>
-          <!-- Book Progress Info Tab -->
-
-          <div class="bookProgressInfo">
-            <div class="detailsWrapper">
-              <img
-                src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1713542603i/11297.jpg"
-                alt="Book Cover" class="bookCover">
-              <div class="bookDetails">
-                <p class="bookTitle">Norwegian Wood</p>
-                <p class="bookAuthor">by Haruki Murakami</p>
-                <p class="bookDescription">A nostalgic story of love and loss set in 1960s Tokyo, following Toru
-                  Watanabe, a university student, as he navigates his feelings for two very different women: the
-                  introspective Naoko, and the lively and outgoing Midori.</p>
-                <!-- Default Fixed Progress Bar Component -->
-                <div class="defaultProgress">
-                  <div class="defaultprogress-done" defaultdata-done="70">
-                    70%
+              <!-- User Goal Section -->
+              <div class="userGoal">
+                  <div class="goalTab">
+                      <div class="goalTitle">Goal: Read 20 Books in 2024</div>
+                      <div class="goalProgress">Progress: 10 out of 20 books</div>
+                      <div class="goalProgressBar">
+                          <div class="goalProgressBarDone" goal-done="50">50%</div>
+                      </div>
+                      <i class="fa-solid fa-pen editGoalIcon"></i>
                   </div>
-                </div>
               </div>
-              <i class="fa-solid fa-ellipsis meatball-icon"></i> <!-- Added icon -->
-            </div>
 
-          </div>
-
-          <div class="bookProgressInfo">
-            <div class="detailsWrapper">
-              <img src="https://bookgrocer.com/cdn/shop/products/9780007350803.jpg?v=1640171404"
-                alt="Book Cover" class="bookCover">
-              <div class="bookDetails">
-                <p class="bookTitle">Jane Eyre</p>
-                <p class="bookAuthor">by Charlotte Brontë</p>
-                <p class="bookDescription">A classic Gothic novel about the orphaned Jane Eyre, who becomes a governess
-                  and falls in love with her employer, Mr. Rochester, while grappling with themes of morality,
-                  independence, and social class.</p>
-                <!-- Default Fixed Progress Bar Component -->
-                <div class="defaultProgress">
-                  <div class="defaultprogress-done" defaultdata-done="60">
-                    60%
+              <!-- Friend Activity Section -->
+              <div class="friendActivity">
+                  <div class="friendActivityHeader">
+                      <h1>Friend Activity</h1>
+                      <i class="fa-solid fa-magnifying-glass searchFriendIcon"></i>
                   </div>
-                </div>
-              </div>
-              <i class="fa-solid fa-ellipsis meatball-icon"></i> <!-- Added icon -->
-            </div>
-
-          </div>
-
-          <!-- Book Progress Info Tab -->
-          <div class="bookProgressInfo">
-            <div class="detailsWrapper">
-              <img
-                src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1597676656i/44279110.jpg"
-                alt="Book Cover" class="bookCover">
-              <div class="bookDetails">
-                <p class="bookTitle">My Years of Rest and Relaxation</p>
-                <p class="bookAuthor">by Ottessa Moshfegh</p>
-                <p class="bookDescription">A disillusioned young woman in New York City decides to sleep for a year
-                  using medications, hoping for personal transformation. The novel explores themes of depression,
-                  isolation, and the search for meaning.</p>
-                <!-- Default Fixed Progress Bar Component -->
-                <div class="defaultProgress">
-                  <div class="defaultprogress-done" defaultdata-done="80">
-                    80%
+                  <div class="dropdownMenu">
+                      <h2>Suggested Friends</h2>
+                      
                   </div>
-                </div>
-              </div>
-              <i class="fa-solid fa-ellipsis meatball-icon"></i> <!-- Added meatball icon -->
-            </div>
 
-          </div>
-
-          <!-- Repeat for other books -->
-          <div class="bookProgressInfo">
-            <div class="detailsWrapper">
-              <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/62948299/2509798634.jpg" alt="Book Cover"
-                class="bookCover">
-              <div class="bookDetails">
-                <p class="bookTitle">The Metamorphosis</p>
-                <p class="bookAuthor">by Franz Kafka</p>
-                <p class="bookDescription">The story of Gregor Samsa, a traveling salesman who wakes
-                  up one morning to find himself transformed into a gigantic insect. It explores themes of alienation,
-                  guilt, and the absurdity of existence.</p>
-                <!-- Default Fixed Progress Bar Component -->
-                <div class="defaultProgress">
-                  <div class="defaultprogress-done" defaultdata-done="40">
-                    40%
+                  <!-- Friends List -->
+                  <div class="friend" data-friend-id="6a7ef2ec-4f89-11d3-9a0c-0305e82c3301">
+                      <img src="https://i.redd.it/zwfggeplutf61.jpg" alt="Friend 1" class="friend-image">
+                      <div class="friend-info">
+                          <p class="friend-name">Mimi</p>
+                          <div class="current-read-container">
+                              <p class="current-read">Reading: The Great Gatsby</p>
+                              <div class="kudos-container">
+                                  <i class="fa-regular fa-heart kudos-icon" data-friend-name="Mimi" data-kudos-sent="false"></i>
+                                  <div class="kudos-dropdown">
+                                      <p>Kudos to Mimi!</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
                   </div>
-                </div>
-              </div>
-              <i class="fa-solid fa-ellipsis meatball-icon"></i> <!-- Added icon -->
-            </div>
-          </div>
-        </div>
 
-        <div class="dataInsight">
-          <h1>Data Insight</h1>
-          <div class="dataInsightTab">
-            <h1>Your favourite Genre</h1>
-            <!-- Canvas element for the genre chart -->
-            <div class="genre-chart-container">
-                <div class="genre-chart-inner">
-                    <canvas id="favoriteGenreChart"></canvas>
-                </div>
-                <div class="genre-legend-container" id="genreLegend"></div>
-            </div>
-          </div>
-          <div class="dataComparison">
-            <div class="comparisonBookMonth">
-              <h2>You have read...</h2>
-              <p><span class="thisMonthBook">7</span> Books this month: </p>
-
-              <p>Books completed last month: <span class="lastMonthBook">5</span></p>
-
-              <div class="comparisonNumChart">
-                <canvas id="comparisonBarChart" style="width:100%; height:200px"></canvas>
-              </div>
-            </div>
-            <div class="comparisonPageDay">
-              <h2>Comparison of Pages Read (Day)</h2>
-              <p>Pages read yesterday: <span class="pagesReadYesterday">50</span></p>
-              <p>Pages read today: <span class="pagesReadToday">60</span></p>
-              <div class="comparisonNumChart">
-                <canvas id="comparisonPageDayChart" style="width:100%; height:200px"></canvas>
-              </div>
-            </div>
-          </div>
-
-          <div class="completedBooks">
-            <h1>Completed books</h1>
-            <div class="completedBooksTab">
-              <!-- Simple tab containing completed books -->
-              <div class="completedBook">
-                <img class="bookCover" src="https://m.media-amazon.com/images/I/515zE1GxvAL._SY445_SX342_.jpg" alt="Book Cover" style="width: 60px; height: auto;">
-                <div class="bookInfo">
-                  <h2 class="bookTitle">Book Title</h2>
-                  <p class="bookAuthor">Book Author</p>
-                  <p class="dateFinished">Date Finished: June 1, 2024</p>
-                </div>
-              </div>
-              <div class="notesSection">
-                <h2>Notes</h2>
-                <div class="noteDisplay"></div> <!-- Note display area -->
-                <div class="noteInput">
-                  <label for="userNote"></label>
-                  <input type="text" id="userNote" name="userNote">
-                  <button type="submit" class="submitNoteButton"><i class="fas fa-circle-arrow-up"></i></button>
-                </div>
-                <p id="noteError" style="color: red; font-family: 'Nunito'; font-size: 14px; margin-top: 5px; margin-left: 8px; display: none;">Please enter at least 15 characters.</p>
+                  <div class="friend" data-friend-id="8c9ef2ec-4f89-11d3-9a0c-0305e82c3303">
+                      <img src="https://preview.redd.it/this-cat-looks-like-a-square-pillow-v0-8qsgsnbxqj2b1.jpg?auto=webp&s=3c472c9001ad10b8b5faab0b613b1a221a002374" alt="Friend 2" class="friend-image">
+                      <div class="friend-info">
+                          <p class="friend-name">Bob</p>
+                          <div class="current-read-container">
+                              <p class="current-read">Reading: Pride and Prejudice</p>
+                              <div class="kudos-container">
+                                  <i class="fa-regular fa-heart kudos-icon" data-friend-name="Bob" data-kudos-sent="false"></i>
+                                  <div class="kudos-dropdown">
+                                      <p>Kudos to Bob!</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
               </div>
 
-            </div>
-          </div>
-          
-        </div>
+              <!-- Current Read Info Section -->
+              <div class="currentReadInfo">
+                  <div class="title-and-button">
+                      <h1>Current Read</h1>
+                      <button class="add-book-button"> <i class="fa-solid fa-plus"></i> Add new book</button>
+                  </div>
+                  <!-- Book Progress Info Tab -->
+                  <div class="bookProgressTabWrapper">
+                      <div class="bookProgressInfo default-book">
+                          <div class="detailsWrapper">
+                              <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1713542603i/11297.jpg" alt="Book Cover" class="bookCover">
+                              <div class="bookDetails">
+                                  <p class="bookTitle">Norwegian Wood</p>
+                                  <p class="bookAuthor">by Haruki Murakami</p>
+                                  <p class="bookDescription">A nostalgic story of love and loss set in 1960s Tokyo, following Toru Watanabe, a university student, as he navigates his feelings for two very different women: the introspective Naoko, and the lively and outgoing Midori.</p>
+                                  <!-- Default Fixed Progress Bar Component -->
+                                  <div class="defaultProgress">
+                                      <div class="defaultprogress-done" defaultdata-done="70">70%</div>
+                                  </div>
+                              </div>
+                              <i class="fa-solid fa-ellipsis meatball-icon"></i>
+                          </div>
+                      </div>
 
-      </section>
-    </article>
+                      <div class="bookProgressInfo default-book">
+                          <div class="detailsWrapper">
+                              <img src="https://bookgrocer.com/cdn/shop/products/9780007350803.jpg?v=1640171404" alt="Book Cover" class="bookCover">
+                              <div class="bookDetails">
+                                  <p class="bookTitle">Jane Eyre</p>
+                                  <p class="bookAuthor">by Charlotte Brontë</p>
+                                  <p class="bookDescription">A classic Gothic novel about the orphaned Jane Eyre, who becomes a governess and falls in love with her employer, Mr. Rochester, while grappling with themes of morality, independence, and social class.</p>
+                                  <!-- Default Fixed Progress Bar Component -->
+                                  <div class="defaultProgress">
+                                      <div class="defaultprogress-done" defaultdata-done="60">60%</div>
+                                  </div>
+                              </div>
+                              <i class="fa-solid fa-ellipsis meatball-icon"></i>
+                          </div>
+                      </div>
+
+                      <div class="bookProgressInfo default-book">
+                          <div class="detailsWrapper">
+                              <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1597676656i/44279110.jpg" alt="Book Cover" class="bookCover">
+                              <div class="bookDetails">
+                                  <p class="bookTitle">My Years of Rest and Relaxation</p>
+                                  <p class="bookAuthor">by Ottessa Moshfegh</p>
+                                  <p class="bookDescription">A disillusioned young woman in New York City decides to sleep for a year using medications, hoping for personal transformation. The novel explores themes of depression, isolation, and the search for meaning.</p>
+                                  <!-- Default Fixed Progress Bar Component -->
+                                  <div class="defaultProgress">
+                                      <div class="defaultprogress-done" defaultdata-done="80">80%</div>
+                                  </div>
+                              </div>
+                              <i class="fa-solid fa-ellipsis meatball-icon"></i>
+                          </div>
+                      </div>
+
+                      <div class="bookProgressInfo default-book">
+                          <div class="detailsWrapper">
+                              <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/62948299/2509798634.jpg" alt="Book Cover" class="bookCover">
+                              <div class="bookDetails">
+                                  <p class="bookTitle">The Metamorphosis</p>
+                                  <p class="bookAuthor">by Franz Kafka</p>
+                                  <p class="bookDescription">The story of Gregor Samsa, a traveling salesman who wakes up one morning to find himself transformed into a gigantic insect. It explores themes of alienation, guilt, and the absurdity of existence.</p>
+                                  <!-- Default Fixed Progress Bar Component -->
+                                  <div class="defaultProgress">
+                                      <div class="defaultprogress-done" defaultdata-done="40">40%</div>
+                                  </div>
+                              </div>
+                              <i class="fa-solid fa-ellipsis meatball-icon"></i>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Data Insight Section -->
+              <div class="dataInsight">
+                  <h1>Data Insight</h1>
+                  <div class="dataInsightTab">
+                      <h1>Your favourite Genre</h1>
+                      <div class="genre-chart-container">
+                          <div class="genre-chart-inner">
+                              <canvas id="favoriteGenreChart"></canvas>
+                          </div>
+                          <div class="genre-legend-container" id="genreLegend"></div>
+                      </div>
+                  </div>
+                  <div class="dataComparison">
+                      <div class="comparisonBookMonth">
+                          <h2>You have read...</h2>
+                          <p><span class="thisMonthBook">7</span> Books this month: </p>
+                          <p>Books completed last month: <span class="lastMonthBook">5</span></p>
+                          <div class="comparisonNumChart">
+                              <canvas id="comparisonBarChart" style="width:100%; height:200px"></canvas>
+                          </div>
+                      </div>
+                      <div class="comparisonPageDay">
+                          <h2>Comparison of Pages Read (Day)</h2>
+                          <p>Pages read yesterday: <span class="pagesReadYesterday">50</span></p>
+                          <p>Pages read today: <span class="pagesReadToday">60</span></p>
+                          <div class="comparisonNumChart">
+                              <canvas id="comparisonPageDayChart" style="width:100%; height:200px"></canvas>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="completedBooks">
+                    <h1>Completed books</h1>
+                    <div class="completedBooksTab">
+                          <div class="completedBook">
+                              <img class="bookCover" src="https://m.media-amazon.com/images/I/515zE1GxvAL._SY445_SX342_.jpg" alt="Book Cover" style="width: 60px; height: auto;">
+                              <div class="bookInfo">
+                                  <h2 class="bookTitle">Frankenstein</h2>
+                                  <p class="bookAuthor">Mary Shelley</p>
+                                  <p class="dateFinished">Date Finished: June 1, 2024</p>
+                              </div>
+                              <i class="fa-solid fa-angle-down toggleNotes"></i>
+                          </div>
+                          <div class="notesSection" style="display: none;">
+                              <h2>Notes</h2>
+                              <div class="noteDisplay"></div> <!-- Note display area -->
+                              <div class="noteInput">
+                                  <label for="userNote"></label>
+                                  <input type="text" id="userNote" name="userNote">
+                                  <button type="submit" class="submitNoteButton"><i class="fas fa-circle-arrow-up"></i></button>
+                              </div>
+                              <p id="noteError" style="color: red; font-family: 'Nunito'; font-size: 14px; margin-top: 5px; margin-left: 8px; display: none;">Please enter at least 15 characters.</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </section>
+      </article>
   </main>
+
 
   <!-- ADD NEW BOOK POP UP -->
   <div id="popupOverlay" class="popup-overlay">
@@ -247,20 +235,39 @@
       <h2>Add New Book</h2>
       <form id="addBookForm">
         <label for="bookTitle">Book Title:</label>
-        <input type="text" id="bookTitle" name="bookTitle" required>
+        <input type="text" id="bookTitle" name="bookTitle" placeholder="e.g.To Kill a Mockingbird"  required>
         <label for="bookAuthor">Author:</label>
-        <input type="text" id="bookAuthor" name="bookAuthor" required>
+        <input type="text" id="bookAuthor" name="bookAuthor" placeholder="e.g Harper Lee" required>
         <label for="bookDescription">Description:</label>
-        <textarea id="bookDescription" name="bookDescription" required></textarea>
+        <textarea id="bookDescription" name="bookDescription" placeholder="Describe the book!" required></textarea>
         <label for="totalPages">Total Pages:</label>
-        <input type="number" id="totalPages" name="totalPages" required>
+        <input type="number" id="totalPages" name="totalPages" placeholder="e.g 500" required>
         <label for="bookCover">Cover URL:</label>
-        <input type="url" id="bookCover" name="bookCover" required>
+        <input type="url" id="bookCover" name="bookCover" placeholder="Copy the link to the book cover image" required>
         <button type="submit">Save</button>
       </form>
     </div>
   </div>
 
+  <!-- User Goal Popup overlay -->
+  <div id="editGoalPopupOverlay" class="editGoalPopupOverlay">
+    <div class="editGoalPopupContent">
+      <span class="closeEditGoalPopup">&times;</span>
+      <h2>Edit Goal</h2>
+      <form id="editGoalForm">
+        <label for="editGoalName">Goal Name:</label>
+        <input type="text" id="editGoalName" name="editGoalName" placeholder="Name your goal!" required>
+        <label for="editGoalTotal">Total Items:</label>
+        <input type="number" id="editGoalTotal" name="editGoalTotal" placeholder="How many books do you need to complete?" required>
+        <label for="editGoalCompleted">Items Completed:</label>
+        <input type="number" id="editGoalCompleted" name="editGoalCompleted" placeholder="How many books have you completed?" required>
+        <div class="editGoalButtons">
+          <button type="button" id="discardGoalChanges">Discard</button>
+          <button type="submit" id="saveGoalChanges">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- Edit Reading Progress Popup -->
   <div id="editPopupOverlay" class="popup-overlay">
@@ -269,19 +276,14 @@
       <h2>Edit Reading Progress</h2>
       <form id="editReadingProgressForm">
         <label for="editPagesRead">Pages Read Today:</label>
-        <input type="number" id="editPagesRead" name="editPagesRead">
-        <label for="editBookNotes">Book Notes:</label>
-        <textarea id="editBookNotes" name="editBookNotes"></textarea>
+        <input type="number" id="editPagesRead" name="editPagesRead" placeholder="How many pages have you read today?">
         <div class="buttonContainer">
-          <button type="submit" id="saveChangesBtn">Save Changes</button>
           <button type="button" id="deleteProgressBtn">Delete Progress</button>
+          <button type="submit" id="saveChangesBtn">Save Changes</button>
         </div>
       </form>
     </div>
   </div>
-  </div>
-
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
   </script>
   <script src="script.js"></script>
