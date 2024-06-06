@@ -1,7 +1,7 @@
 {
-  "name": "abcd1234-tracker",
+  "name": "lhoa4904-booktracker",
   "version": "0.0.1",
-  "description": "a template for DECO2017 Assessment 3",
+  "description": "Lan's submission of Web Application",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hamsall/abcd1234-tracker.git"
+    "url": "git+https://github.com/lhoa4904/lhoa4904.github.io"
   },
   "keywords": [
     "tracker"
@@ -18,9 +18,9 @@
   "author": "hamsall",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hamsall/abcd1234-tracker/issues"
+    "url": "https://github.com/lhoa4904/lhoa4904.github.io"
   },
-  "homepage": "https://github.com/hamsall/abcd1234-tracker#readme",
+  "homepage": "https://pagepal.me/public/index.html",
   "dependencies": {
     "express": "^4.18.2",
     "sass": "^1.75.0"

@@ -1,3 +1,4 @@
+// PROGRESS BAR FOR USER GOAL AND CURRENT READS
 document.addEventListener("DOMContentLoaded", () => {
     // Initialize goal progress bar
     const goalProgressBarDone = document.querySelector('.goalProgressBar .goalProgressBarDone');
@@ -5,47 +6,54 @@ document.addEventListener("DOMContentLoaded", () => {
     goalProgressBarDone.style.width = goalProgressBarWidth + '%';
     goalProgressBarDone.style.opacity = 1;
 
+    // Select necessary DOM elements for adding a book
     const addBookButton = document.querySelector(".add-book-button");
     const popupOverlay = document.getElementById("popupOverlay");
     const closeButton = document.querySelector(".close-button");
     const addBookForm = document.getElementById("addBookForm");
-    const currentReadInfo = document.querySelector(".currentReadInfo");
 
+    // Event listener to show the add book popup when the add book button is clicked
     addBookButton.addEventListener("click", () => {
         popupOverlay.style.display = "flex";
     });
 
+    // Event listener to hide the add book popup when the close button is clicked
     closeButton.addEventListener("click", () => {
         popupOverlay.style.display = "none";
     });
 
+    // Event listener to hide the add book popup when clicking outside the popup content
     popupOverlay.addEventListener("click", (event) => {
         if (event.target === popupOverlay) {
             popupOverlay.style.display = "none";
         }
     });
 
+    // Event listener for form submission to add a new book
     addBookForm.addEventListener("submit", (event) => {
         event.preventDefault();
 
+        // Get input values from the form
         const bookTitle = document.getElementById("bookTitle").value;
         const bookAuthor = document.getElementById("bookAuthor").value;
         const bookDescription = document.getElementById("bookDescription").value;
         const bookCover = document.getElementById("bookCover").value;
-        const totalPages = parseInt(document.getElementById("totalPages").value); // Added this line to get total pages
+        const totalPages = parseInt(document.getElementById("totalPages").value); // Get total pages from input
         const pagesRead = 0; // Initial pages read
 
-        // Save book progress to localStorage, including totalPages and pagesRead
+        // Save book progress to localStorage, including total pages and pages read
         saveBookProgress({ bookTitle, bookAuthor, bookDescription, bookCover, totalPages, pagesRead });
 
-        // Add book progress to UI, including totalPages and pagesRead
+        // Add the new book progress to the UI
         addBookToUI({ bookTitle, bookAuthor, bookDescription, bookCover, totalPages, pagesRead });
 
+        // Hide the popup and reset the form
         popupOverlay.style.display = "none";
         addBookForm.reset();
 
-        // Reinitialize meatball icon click event
+        // Reinitialize the meatball icon click event to include the new book
         initializeMeatballIconClick();
+
     });
 
     // Function to load saved book progress from localStorage
@@ -84,38 +92,45 @@ document.addEventListener("DOMContentLoaded", () => {
                 <i class="fa-solid fa-ellipsis meatball-icon"></i>
             </div>
         `;
-        // Assuming bookProgressTabWrapper is a wrapper div that contains all book progress info
+        // Add book to "bookProgressTabWrapper" section - the wrapper div that contains all book progress info
         const bookProgressTabWrapper = document.querySelector('.bookProgressTabWrapper');
         bookProgressTabWrapper.appendChild(bookProgressInfo);
     }
 
     // Function to initialize meatball icon click event
     function initializeMeatballIconClick() {
+        // Select all meatball icons and other relevant DOM elements
         const meatballIcons = document.querySelectorAll('.meatball-icon');
         const editPopupOverlay = document.getElementById('editPopupOverlay');
         const closeButton = editPopupOverlay.querySelector('.close-button');
         const saveChangesButton = document.getElementById('saveChangesBtn');
         const deleteProgressButton = document.getElementById('deleteProgressBtn'); // Added delete button reference
 
-
+        // Add click event listeners to each meatball icon
         meatballIcons.forEach(icon => {
             icon.addEventListener('click', () => {
+                // Display the edit popup overlay
                 editPopupOverlay.style.display = 'flex';
+
+                // Get the book progress info related to the clicked icon
                 const bookProgressInfo = icon.closest('.bookProgressInfo');
                 const progressDone = bookProgressInfo.querySelector('.progress-done');
                 const currentPagesRead = parseInt(bookProgressInfo.dataset.pagesRead);
 
+                // Set the current pages read in the edit input field
                 document.getElementById('editPagesRead').value = currentPagesRead;
 
+                // Store the current book progress info in the overlay for later reference
                 editPopupOverlay.currentBookProgressInfo = bookProgressInfo;
 
+                // Check if the book is a default book and display a warning message if true
                 const isDefaultBook = bookProgressInfo.classList.contains('default-book');
-
                 const warningMessage = document.createElement('div');
                 warningMessage.classList.add('warning-message');
                 warningMessage.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Only edit or delete newly added books';
                 editPopupOverlay.appendChild(warningMessage);
 
+                // Show the warning message when hovering over save or delete buttons
                 function showWarning(event) {
                     warningMessage.style.display = 'block';
                     const buttonRect = event.target.getBoundingClientRect();
@@ -123,10 +138,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     warningMessage.style.bottom = `${buttonRect.bottom - 235}px`;
                 }
 
+                // Hide the warning message when not hovering over save or delete buttons
                 function hideWarning() {
                     warningMessage.style.display = 'none';
                 }
 
+                // Add or remove event listeners for showing/hiding the warning message based on book type
                 if (isDefaultBook) {
                     saveChangesButton.addEventListener('mouseover', showWarning);
                     saveChangesButton.addEventListener('mouseout', hideWarning);
@@ -141,15 +158,18 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
+        // Add click event listener to close the popup overlay
         if (closeButton) {
             closeButton.addEventListener('click', () => {
                 editPopupOverlay.style.display = 'none';
             });
         }
 
+        // Add click event listener to save changes
         if (saveChangesButton) {
             saveChangesButton.addEventListener('click', (e) => {
                 e.preventDefault();
+                // Get the current book progress info and calculate the updated progress
                 const bookProgressInfo = editPopupOverlay.currentBookProgressInfo;
                 const totalBookPages = parseInt(bookProgressInfo.dataset.totalPages);
                 const pagesReadToday = parseInt(document.getElementById('editPagesRead').value);
@@ -157,20 +177,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 const totalPagesRead = previousPagesRead + pagesReadToday; // Accumulate the pages read
                 const bookProgressPercentage = (totalPagesRead / totalBookPages) * 100;
 
+                // Update the progress bar and text
                 const progressBar = bookProgressInfo.querySelector('.progress-done');
                 progressBar.style.width = `${bookProgressPercentage}%`;
                 progressBar.textContent = `${Math.round(bookProgressPercentage)}%`;
 
+                // Update the dataset with the new pages read value
                 bookProgressInfo.dataset.pagesRead = totalPagesRead;
 
+                // Update the book progress in local storage
                 updateBookProgressInLocalStorage(bookProgressInfo);
 
+                // Hide the edit popup overlay
                 editPopupOverlay.style.display = 'none';
             });
         }
 
+        // Add click event listener to delete book progress
         if (deleteProgressButton) {
             deleteProgressButton.addEventListener('click', () => {
+                // Remove the book progress info from the DOM and local storage
                 const bookProgressInfo = editPopupOverlay.currentBookProgressInfo;
                 bookProgressInfo.remove();
                 deleteBookProgressFromLocalStorage(bookProgressInfo);
@@ -178,6 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
+        // Function to update book progress in local storage
         function updateBookProgressInLocalStorage(bookProgressInfo) {
             const bookTitle = bookProgressInfo.querySelector('.bookTitle').textContent;
             const bookProgress = JSON.parse(localStorage.getItem('bookProgress')) || [];
@@ -190,6 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem('bookProgress', JSON.stringify(updatedBookProgress));
         }
 
+        // Function to delete book progress from local storage
         function deleteBookProgressFromLocalStorage(bookProgressInfo) {
             const bookTitle = bookProgressInfo.querySelector('.bookTitle').textContent;
             const bookProgress = JSON.parse(localStorage.getItem('bookProgress')) || [];
@@ -198,8 +226,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Load book progress data and initialize meatball icon click event
     loadBookProgress();
     initializeMeatballIconClick();
+
 });
 
 
@@ -303,9 +333,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // GENRE INSIGHT GRAPH
+
+// Wait until the DOM is fully loaded before running the script
 document.addEventListener('DOMContentLoaded', function() {
+    // Get the context of the canvas element to draw the chart
     const ctx = document.getElementById('favoriteGenreChart').getContext('2d');
 
+    // Data for the genre insight graph
     const chartData = [
         { genre: "Classic", booksRead: 39 },
         { genre: "Mystery", booksRead: 18 },
@@ -313,27 +347,30 @@ document.addEventListener('DOMContentLoaded', function() {
         { genre: "Biography", booksRead: 5 },
     ];
 
+    // Initialize arrays to hold genre labels and corresponding book read data
     let genreLabels = [],
         booksReadData = [],
         sum = 0;
 
+    // Populate the genre labels and books read data arrays, and calculate the total books read
     for (let i = 0; i < chartData.length; i++) {
         genreLabels.push(chartData[i].genre);
         booksReadData.push(chartData[i].booksRead);
         sum += chartData[i].booksRead;
     }
 
-
+    // Text to display in the center of the doughnut chart showing the total books read
     const textInside = sum.toString();
 
+    // Create the doughnut chart using Chart.js
     const myChart = new Chart(ctx, {
-        type: 'doughnut',
+        type: 'doughnut', // Chart type
         data: {
-            labels: genreLabels,
+            labels: genreLabels, // X-axis labels (genres)
             datasets: [{
-                label: 'Books Read',
-                data: booksReadData,
-                backgroundColor: [
+                label: 'Books Read', // Dataset label
+                data: booksReadData, // Y-axis data (books read)
+                backgroundColor: [ // Colors for each section of the doughnut
                     "#7AAFFF",
                     "#FFB17A",
                     "#FFD47B",
@@ -344,12 +381,13 @@ document.addEventListener('DOMContentLoaded', function() {
         options: {
             elements: {
                 center: {
-                    text: textInside
+                    text: textInside // Text inside the center of the doughnut chart
                 }
             },
-            responsive: true,
-            legend: false,
+            responsive: true, // Chart is responsive to screen size
+            legend: false, // Disable the default legend
             legendCallback: function(chart) {
+                // Generate custom legend HTML
                 let legendHtml = [];
                 legendHtml.push('<ul>');
                 let item = chart.data.datasets[0];
@@ -363,10 +401,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 return legendHtml.join("");
             },
             tooltips: {
-                enabled: true,
-                mode: 'label',
+                enabled: true, // Enable tooltips
+                mode: 'label', // Tooltip mode
                 callbacks: {
                     label: function(tooltipItem, data) {
+                        // Custom tooltip label showing the number of books read per genre
                         let indice = tooltipItem.index;
                         return 'You read ' + data.datasets[0].data[indice] + ' ' + data.labels[indice] + ' books this month';
                     }
@@ -375,24 +414,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Insert the custom legend into the DOM
     document.getElementById('genreLegend').innerHTML = myChart.generateLegend();
 });
 
+// Function to update the goal progress ring
 function updateGoalProgress(progressPercentage) {
+    // Select the SVG circle element and the text element showing the progress percentage
     const circle = document.querySelector('.goal-progress-ring-circle');
     const text = document.querySelector('.goal-progress-text');
 
+    // Calculate the radius and circumference of the circle
     const radius = circle.r.baseVal.value;
     const circumference = 2 * Math.PI * radius;
 
+    // Calculate the stroke offset based on the progress percentage
     const offset = circumference - progressPercentage / 100 * circumference;
 
+    // Set the stroke-dasharray and stroke-dashoffset to create the progress ring effect
     circle.style.strokeDasharray = `${circumference} ${circumference}`;
     circle.style.strokeDashoffset = offset;
 
+    // Update the text content to show the current progress percentage
     text.textContent = `${progressPercentage}%`;
 }
 
+
+// COMPLETED NOTES SECTION
 
 // Get the input field, submit button, note display area, and note error element
 const userInput = document.getElementById('userNote');
@@ -415,7 +463,6 @@ function renderNotes() {
 
         // Add the trash icon directly within each note container
         div.innerHTML += '<i class="deleteIcon fas fa-trash fa-lg" onclick="deleteNote(' + index + ')"></i>';
-
         noteDisplay.appendChild(div);
     });
 }
@@ -473,7 +520,6 @@ toggleNotesBtn.addEventListener('click', function() {
 
 
 // USER GOAL SECTION
-// USER GOAL SECTION
 document.addEventListener("DOMContentLoaded", () => {
     const editGoalIcon = document.querySelector('.editGoalIcon');
     const editGoalPopupOverlay = document.getElementById('editGoalPopupOverlay');
@@ -503,7 +549,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const goalTitle = document.querySelector('.goalTitle');
         const goalProgress = document.querySelector('.goalProgress');
         const goalProgressBarDone = document.querySelector('.goalProgressBarDone');
-
         const newGoalName = document.getElementById('editGoalName').value;
         const newGoalTotal = parseInt(document.getElementById('editGoalTotal').value);
         const newGoalCompleted = parseInt(document.getElementById('editGoalCompleted').value);
@@ -541,8 +586,8 @@ document.addEventListener("DOMContentLoaded", () => {
         goalProgressBarDone.textContent = `${Math.round(savedGoalProgress)}%`;
         goalProgressBarDone.setAttribute('goal-done', savedGoalProgress);
     }
-
 });
+
 
 // FRIEND ACTIVITY
 document.addEventListener("DOMContentLoaded", () => {
